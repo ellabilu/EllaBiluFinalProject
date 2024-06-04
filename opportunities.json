@@ -1,0 +1,84 @@
+[
+    {
+        "name": "Youth Leadership Conference",
+        "photo": "https://example.com/conference.jpg",
+        "organization": "Youth Empowerment Organization",
+        "applicableTo": ["High School Students"],
+        "date": "2024-06-15",
+        "uploadedBy": "Admin1",
+        "tags": ["Leadership", "Youth", "Conference"]
+    },
+    {
+        "name": "Community Clean-up Day",
+        "photo": "https://example.com/cleanup.jpg",
+        "organization": "Local Environmental Group",
+        "applicableTo": ["Community Members"],
+        "date": "2024-07-20",
+        "uploadedBy": "Admin2",
+        "tags": ["Community", "Environment", "Volunteering"]
+    },
+    {
+        "name": "Voter Registration Drive",
+        "photo": "https://example.com/voter-registration.jpg",
+        "organization": "Civic Engagement Coalition",
+        "applicableTo": ["General Public"],
+        "date": "2024-08-05",
+        "uploadedBy": "Admin3",
+        "tags": ["Voting", "Civic Engagement", "Community"]
+    },
+    {
+        "name": "Youth Writing Contest",
+        "photo": "https://example.com/writing-contest.jpg",
+        "organization": "Local Library",
+        "applicableTo": ["Students"],
+        "date": "2024-09-10",
+        "uploadedBy": "Admin4",
+        "tags": ["Writing", "Youth", "Contest"]
+    },
+    {
+        "name": "Campaign Volunteer Training",
+        "photo": "https://example.com/volunteer-training.jpg",
+        "organization": "Political Campaign Committee",
+        "applicableTo": ["Volunteers"],
+        "date": "2024-10-15",
+        "uploadedBy": "Admin5",
+        "tags": ["Campaign", "Volunteering", "Training"]
+    },
+    {
+        "name": "Community Town Hall Meeting",
+        "photo": "https://example.com/town-hall.jpg",
+        "organization": "Local Government",
+        "applicableTo": ["Residents"],
+        "date": "2024-11-20",
+        "uploadedBy": "Admin6",
+        "tags": ["Community", "Government", "Meeting"]
+    },
+    {
+        "name": "Youth Activism Workshop",
+        "photo": "https://example.com/activism-workshop.jpg",
+        "organization": "Activist Alliance",
+        "applicableTo": ["Youth"],
+        "date": "2025-01-05",
+        "uploadedBy": "Admin7",
+        "tags": ["Youth", "Activism", "Workshop"]
+    },
+    {
+        "name": "Community Gardening Project",
+        "photo": "https://example.com/community-garden.jpg",
+        "organization": "Neighborhood Association",
+        "applicableTo": ["Community Members"],
+        "date": "2025-02-10",
+        "uploadedBy": "Admin8",
+        "tags": ["Community", "Gardening", "Project"]
+    },
+    {
+        "name": "Social Media Advocacy Campaign",
+        "photo": "https://example.com/social-media-campaign.jpg",
+        "organization": "Digital Advocacy Group",
+        "applicableTo": ["Social Media Users"],
+        "date": "2025-03-15",
+        "uploadedBy": "Admin9",
+        "tags": ["Advocacy", "Social Media", "Campaign"]
+    }
+    
+]
