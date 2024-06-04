@@ -1,0 +1,609 @@
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letters to Congress Tutorial</title>
+    <link href='https://fonts.googleapis.com/css?family=Hanken Grotesk' rel='stylesheet'>
+    <link rel="stylesheet" href="styles.css">
+    <style>    body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #B0CDF5;
+            color: white;
+        }
+
+        .navbar {
+            background-color: #1B3D6D;
+            color: white;
+            padding: 20px;
+            position: relative;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .person-icon {
+            position: absolute;
+            top: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #1B3D6D;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        h1 {
+            text-align: center;
+    color: red;
+    font-size: 48px;
+    margin-bottom: 0; /* Ensure no extra space below the heading */
+    padding-bottom: 0;
+            
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            background-image: url('https://images.pexels.com/photos/1181441/pexels-photo-1181441.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            margin-top: 20px;
+            height: 400px; /* increased height */
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%; /* make carousel take up full height */
+        }
+
+        .box {
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            height: 100%; /* make each box take up full height */
+            display: flex;
+            flex-direction: column; /* Added */
+            align-items: center; /* Updated */
+            justify-content: center;
+            text-align: center; /* Added */
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .carousel-button.left {
+            left: 10px;
+        }
+
+        .carousel-button.right {
+            right: 10px;
+        }
+
+        .carousel-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        h2, h3 {
+            text-align: center;
+            margin-bottom: 20px; /* Added */
+            font-size: 32px; /* Increased font size */
+        }
+.padding {
+    margin-top: 10px; /* Adjust the top margin to reduce space */
+    padding: 0; /* Remove any padding */
+}
+        p {
+            text-align: center; /* Center the text */
+            margin-bottom: 20px; /* Added */
+            line-height: 1.6; /* Added */
+            font-size: 20px; /* Increased font size */
+            max-width: 600px; /* Set maximum width */
+            margin-left: auto; /* Center align */
+            margin-right: auto; /* Center align */
+        }
+        .center-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        #uploadForm, #preview {
+            background-color: white;
+            color: black;
+            padding: 40px; /* Increased padding */
+            border-radius: 10px;
+            text-align: center;
+            max-width: 600px; /* Increased max-width */
+            width: 80%; /* Added */
+            margin: 0 auto;
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            box-sizing: border-box; /* Added */
+        }
+
+        #uploadForm .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            width: 30px;
+            height: 30px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #1B3D6D;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px; /* Increased font size */
+        }
+
+        button:hover {
+            background-color: #446BAF;
+        }
+
+        label {
+            color: black;
+            font-size: 18px; /* Increased font size */
+            display: block; /* Added */
+            margin-bottom: 10px; /* Added */
+        }
+
+        input[type="text"], input[type="file"] {
+            width: calc(100% - 40px); /* Added */
+            padding: 10px; /* Increased padding */
+            font-size: 16px; /* Increased font size */
+            margin-bottom: 20px; /* Added */
+            border-radius: 5px; /* Added */
+            border: 1px solid #ccc; /* Added */
+            box-sizing: border-box; /* Added */
+        }
+
+        .submitted-forms {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        .form-square {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            width: 200px;
+            color: white;
+        }
+
+        /* Overlay style for blurring the background */
+        #uploadFormOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        #uploadFormOverlay.show {
+            display: block;
+        }
+.round-box {
+    width: 120px;
+    height: 60px;
+    background-color: #1B3D6D;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.round-box:hover {
+    transform: scale(1.1);
+}
+
+.round-box:not(:first-child) {
+    margin-left: -10px;
+}
+
+.round-box:not(:last-child) {
+    margin-right: -10px;
+}
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.popup-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: black;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Add this CSS to make the boxes appear on the same row */
+.round-box-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Adjust height of the boxes */
+.round-box {
+    width: 120px;
+    height: 40px; /* Reduce the height */
+    background-color: #1B3D6D;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px; /* Adjust font size */
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Adjust height of the form */
+#uploadForm {
+    padding: 20px; /* Reduce padding */
+    max-width: 400px; /* Reduce max-width */
+    width: 80%; /* Added */
+    height: auto; /* Auto height */
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-between; /* Adjust spacing between the boxes */
+    max-width: 600px; /* Adjust as needed */
+    margin: 0 auto; /* Center the container */
+    margin-top: 20px; /* Adjust as needed */
+}
+
+
+
+.round-box:hover {
+    transform: scale(1.1);
+}
+
+.round-box:not(:first-child) {
+    margin-left: -10px;
+}
+
+.round-box:not(:last-child) {
+    margin-right: -10px;
+}
+
+hr {
+    border: 0;
+    height: 2px;
+    background-color: #1B3D6D; /* Match the color of the navbar */
+    margin: 20px 0; /* Add some vertical spacing */
+}
+
+.center-button {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#uploadFormOverlay {
+    display: none; /* Hide by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+#uploadForm {
+    display: none; /* Hide by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    width: 90%;
+    max-width: 500px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+<header class="navbar">
+    <a href="/">Home</a>
+    <div class="dropdown">
+        <a href="#">Letters</a>
+        <div class="dropdown-content">
+            <a href="/newsletters">Newsletters</a>
+            <a href="/letters">Writing a Letter</a>
+            <a href="/upload">Upload Your Letter</a>
+        </div>
+    </div>
+    <a href="/opportunities">Opportunities</a>
+    <a href="/qanda">Ask and Answer</a>
+    <a href="/about">About</a>
+</header>
+<h1>Writing Letters to Elected Officials</h1>
+<p class="padding">Click on the buttons below to learn more about letter writing.</p>
+<div class="buttons-container">
+    <div class="round-box" onclick="showPopup(generateWhyText())">Why?</div>
+    <div class="round-box" onclick="showPopup(generateWhoText())">Who?</div>
+    <div class="round-box" onclick="showPopup(generateWhereText())">Where?</div>
+    <div class="round-box" onclick="showPopup(generateWhatText())">What?</div>
+</div>
+
+
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="hidePopup()">&times;</span>
+        <div id="popupText" class="popup-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo, lectus id ullamcorper blandit, dui lorem ultrices lacus, eget convallis ligula nisl non leo.</div>
+    </div>
+</div>
+
+<div class="container">
+    <button class="carousel-button left" onclick="prevSlide()">&#10094;</button>
+    <div class="carousel" id="carousel">
+        <div class="box" id="introduction">
+            <h2>INTRODUCTION</h2>
+            <p>Introduce yourself by stating your name, city, and any groups you are part of. Clearly state your request and explain why it is important to you and the community, keeping your message personal.</p>
+        </div>
+        <div class="box" id="fight">
+            <h2>ADVOCATE</h2>
+            <p>When advocating for your cause, explain why the issue is pressing and provide relevant statistics and evidence to support your argument. Be enthusiastic and engaged, aiming to educate and persuade the reader without being overly aggressive.</p>
+        </div>
+        <div class="box" id="conclude">
+            <h2>CONCLUDE</h2>
+            <p> Try to relate the issue to the bigger picture and how supporting your cause will support your community. Also, thank the official for their time and consideration. Finally, sign off with your name and address (especially when emailing your personal official; this helps prioritize your letter over those from individuals they don’t represent).</p>
+        </div>
+        <div class="box" id="extra">
+            <h2>Extra</h2>
+            <p>Some final tips include keeping your letter concise, to be kind, and to be as persuasive as possible!</p>
+        </div>
+    </div>
+    <button class="carousel-button right" onclick="nextSlide()">&#10095;</button>
+</div>
+<div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+    <p>Done writing your letter and want to share it with others? Upload it for them to download. Click the button below.</p>
+    <a href="upload"><button>Upload Your Letter</button></a>
+</div>
+    
+
+<script>
+    // Function to show the upload form and overlay
+    function showUploadForm() {
+        document.getElementById('uploadForm').style.display = 'block';
+        document.getElementById('uploadFormOverlay').classList.add('show');
+    }
+
+    // Function to hide the upload form and overlay
+    function hideUploadForm() {
+        document.getElementById('uploadForm').style.display = 'none';
+        document.getElementById('uploadFormOverlay').classList.remove('show');
+    }
+
+    // Function to submit the form
+//    document.getElementById('fileUploadForm').addEventListener('submit', function (event) {
+//        event.preventDefault();
+//
+//        const topic = document.getElementById('topic').value;
+//        const link = document.getElementById('link').value;
+//        const who = document.getElementById('who').value;
+//        const fileInput = document.getElementById('fileInput');
+//        const file = fileInput.files[0];
+//
+//        if (file) {
+//            const reader = new FileReader();
+//            reader.readAsDataURL(file);
+//            reader.onload = function () {
+//                const submittedFormsContainer = document.getElementById('submittedFormsContainer');
+//                const formSquare = document.createElement('div');
+//                formSquare.classList.add('form-square');
+//
+//                formSquare.innerHTML = `
+//                    <p><strong>Topic:</strong> ${topic}</p>
+//                    <p><strong>Link:</strong> <a href="${link}" target="_blank">${link}</a></p>
+//                    <p><strong>Who:</strong> ${who}</p>
+//                    <p><strong>File:</strong> <a href="${reader.result}" download="${file.name}">${file.name}</a></p>
+//                    <button onclick="deleteForm(this)">Delete</button>
+//                `;
+//
+//                submittedFormsContainer.appendChild(formSquare);
+//            };
+//        }
+//
+//        hideUploadForm();
+//
+//        // Clear form fields after submission
+//        document.getElementById('topic').value = '';
+//        document.getElementById('link').value = '';
+//        document.getElementById('who').value = '';
+//        document.getElementById('fileInput').value = '';
+//    });
+
+    // Function to delete the form
+    function deleteForm(element) {
+        const formSquare = element.parentElement;
+        formSquare.remove();
+    }
+
+function showForm(index) {
+        const carouselSlide = document.getElementById('carouselSlide');
+        const forms = carouselSlide.getElementsByClassName('form-square');
+        if (forms.length === 0) return;
+
+        for (let i = 0; i < forms.length; i++) {
+            forms[i].style.display = 'none';
+        }
+
+        forms[index].style.display = 'block';
+    }
+
+  let currentIndex = 0;
+
+    function showSlide(index) {
+        const slides = document.querySelectorAll('.carousel .box');
+        if (index >= slides.length) {
+            currentIndex = 0;
+        } else if (index < 0) {
+            currentIndex = slides.length - 1;
+        } else {
+            currentIndex = index;
+        }
+        const offset = -currentIndex * 100;
+        document.getElementById('carousel').style.transform = `translateX(${offset}%)`;
+    }
+
+    function nextSlide() {
+        showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+        showSlide(currentIndex - 1);
+    }
+function generateWhyText() {
+    return "Why is letter writing important? Writing letters to elected officials is a great way to let your opinion be known to your representative. Their job is to represent not just their own opinion, but the population that they serve. The ACLU makes a great point in their guide to letter writing, saying, “Many legislators believe that a letter represents not only the position of the writer but also many other constituents who did not take the time to write.”";
+}
+
+function generateWhoText() {
+    return "Speaking of writing letters to representatives, who can you write a letter to? You can write a letter to any elected official, but that doesn’t mean you should. You should more often than not write letters to elected officials that specifically represent you  (your city, district, etc.) The officials who do not represent your area are less likely to care about your opinion, simply because it’s not their responsibility to reflect you. This is not always the case though. For example, if a California Assembly Member is the chair of a committee voting on a topic you care about, and your assemblyperson is not on the committee, you can write to the chair, as they are the lead within the committee.";
+}
+
+function generateWhereText() {
+    return "Sending your letter: Now that your letter is written, it’s time to send it! You can either email your letter or mail it to the official’s office. I prefer physical mailing because it feels more personal and intentional, but that’s just my preference. Public email and office addresses can be found on the official’s website. Before even starting your letter though, I recommend you check to make sure their addresses are displayed.";
+}
+
+function generateWhatText() {
+    return "Letter writing is an opportunity for anyone to get civically involved!";
+}
+
+function showPopup(text) {
+    var popup = document.getElementById('popup');
+    var popupText = document.getElementById('popupText');
+    popup.style.display = "block";
+    popupText.textContent = text;
+}
+
+
+function hidePopup() {
+    var popup = document.getElementById('popup');
+    popup.style.display = "none";
+}
+
+</script>
+</body>
+</html>
+

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= post ? "Edit Post" : "Create New Post" %></title>
+  <link href='https://fonts.googleapis.com/css?family=Hanken Grotesk' rel='stylesheet'>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Hanken Grotesk', sans-serif;
+    }
+    .back-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 2; /* Ensure it's above other content */
+      background-color: darkblue;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      text-decoration: none; /* Remove default link underline */
+    }
+    h1 {
+      text-align: center;
+      font-size: 36px;
+    }
+    form {
+      background-color: white;
+      border-radius: 10px;
+      width: 60%;
+      margin: 0 auto;
+      padding: 30px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button[type="submit"] {
+      background-color: darkblue;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    button[type="submit"]:hover {
+      background-color: #001f3f;
+    }
+  </style>
+</head>
+<body style="background-image: url('https://images.pexels.com/photos/129112/pexels-photo-129112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); background-size: cover;">
+  <a href="/qanda" class="back-btn">&#8592; Back to Posts</a>
+  <h1><%= post ? "Edit Post" : "Create New Post" %></h1>
+  <form action="<%= post ? "/editPost/" + post._id : "/createPost" %>" method="POST">
+    <div>
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title" value="<%= post ? post.title : "" %>" required>
+    </div>
+    <div>
+      <label for="content">Content:</label>
+      <textarea id="content" name="content" required><%= post ? post.content : "" %></textarea>
+    </div>
+    <% if (post) { %>
+      <!-- Include a hidden input to indicate that this is an edit operation -->
+      <input type="hidden" name="_method" value="PUT">
+    <% } %>
+    <button type="submit"><%= post ? "Update" : "Submit" %></button>
+  </form>
+</body>
+</html>
+

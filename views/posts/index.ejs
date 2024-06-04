@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog Posts</title>
+    <link href='https://fonts.googleapis.com/css?family=Hanken Grotesk' rel='stylesheet'>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-size: cover;
+            color: white;
+            background-color: #B0CDF5;
+        }
+
+        .navbar {
+            background-color: #1B3D6D;
+            color: white;
+            padding: 20px;
+            position: relative;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .person-icon {
+            position: absolute;
+            top: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #1B3D6D;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #8B0000;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1B3D6D;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .post {
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .post h2 {
+            margin-top: 0;
+            color: #8B0000;
+        }
+
+        .post p {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .reply {
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .person-icon {
+            font-size: 20px;
+        }
+
+        form select, form textarea, form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            background-color: #8B0000;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #a82828;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            color: white;
+            background-color: #8B0000;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .btn:hover {
+            background-color: #a82828;
+        }
+
+        .btn-secondary {
+            background-color: #555;
+        }
+
+        .btn-secondary:hover {
+            background-color: #666;
+        }
+
+        .search-bar {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 0 auto;
+            display: block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: #8B0000;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .search-bar button:hover {
+            background-color: #a82828;
+        }
+
+        .replies-header {
+            color: #8B0000;
+            margin-top: 20px;
+        }
+
+        .edit-delete-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .spacer {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <a href="/">Home</a>
+    <div class="dropdown">
+        <a href="#">Letters</a>
+        <div class="dropdown-content">
+            <a href="/newsletters">Newsletters</a>
+            <a href="/letters">Writing a Letter</a>
+            <a href="/upload">Upload Your Letter</a>
+        </div>
+    </div>
+    <a href="/opportunities">Opportunities</a>
+    <a href="/qanda">Ask and Answer</a>
+    <a href="/about">About</a>
+    <a href='/login'><i class="fas fa-user person-icon"></i></a>
+</header>
+<h1>Ask a Question about Politics, Voting, or Advocacy!</h1>
+<div class="description">
+    <p>Welcome to the forum!</p>
+    <p>This is a space to ask questions and share knowledge about politics, voting, and advocacy. Engage with the community, seek advice, and contribute your insights.</p>
+</div>
+<div class="container">
+    <% if (user.role === 'admin') { %>
+    <h2>Manage User Roles</h2>
+    <form action="/toggleUserRole" method="POST">
+        <select name="userId" id="userId">
+            <% users.forEach((u) => { %>
+            <% if (u.username !== user.username) { %>
+            <option value="<%= u._id %>"><%= u.username %> - <%= u.role %></option>
+            <% }}); %>
+        </select>
+        <button type="submit">Toggle Role</button>
+    </form>
+    <% } %>
+
+    <!-- Search Bar for Posts -->
+    <div class="search-bar">
+        
+        <% if (user.role === 'admin') { %>
+    <h2>Manage User Roles</h2>
+    <form action="/toggleUserRole" method="POST">
+        <select name="userId" id="userId">
+            <% users.forEach((u) => { %>
+            <% if (u.username !== user.username) { %>
+            <option value="<%= u._id %>"><%= u.username %> - <%= u.role %></option>
+            <% }}); %>
+        </select>
+        <button type="submit">Toggle Role</button>
+    </form>
+<% } %>
+
+<form action="" method="GET" class="search-form">
+    <label for="user">Filter Posts by Users:</label>
+    <select name="user" id="user" onchange="this.form.submit()">
+        <option value="all">All</option>
+        <% users.forEach(function(u) { %>
+        <option value="<%= u._id %>" <%= selectedUser === u._id.toString() ? 'selected' : '' %>><%= u.username %></option>
+        <% }); %>
+    </select>
+</form>
+
+    </div>
+
+    <h1>Blog Posts (Count: <%= totalPosts %>)</h1>
+    <div class="spacer" style="text-align: center;">
+        <a href="createPost" class="btn" style="width: 200px;">Create New Post</a>
+    </div>
+    <% if (posts.length > 0) { %>
+    <% posts.forEach(post => { %>
+    <div class="post">
+        <h2><%= post.title %></h2>
+        <p><%= post.content %></p>
+        <p>Posted by: <%= post.author.username %></p>
+        <div class="edit-delete-buttons">
+            <% if (user && (user._id.toString() === post.author._id.toString() || user.role === 'admin')) { %>
+            <a href="/editPost/<%= post._id %>" class="btn">Edit</a>
+            
+            <% } %>
+        </div>
+        <h3 class="replies-header">Replies:</h3>
+        <% post.replies.forEach(reply => { %>
+        <div class="reply">
+            <p><%= reply.content %></p>
+            <p>Replied by: <%= reply.author.username %></p>
+        </div>
+        <% }) %>
+        <% if (user) { %>
+        <form action="/reply/<%= post._id %>" method="POST">
+            <textarea name="content" placeholder="Write a reply..." required></textarea>
+            <button type="submit">Reply</button>
+        </form>
+        <% } %>
+    </div>
+    <% }) %>
+    <% } else { %>
+    <p>No posts to display.</p>
+    <% } %>
+</div>
+
+<!-- Font Awesome for icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script>document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+
+    searchInput.addEventListener('input', function() {
+        const query = searchInput.value.trim().toLowerCase();
+        fetch(`/search?query=${query}`)
+            .then(response => response.json())
+            .then(data => {
+                // Update the DOM with filtered posts
+                updatePosts(data.posts);
+            })
+            .catch(error => console.error('Error searching:', error));
+    });</script>
+</body>
+</html>
+
+
+

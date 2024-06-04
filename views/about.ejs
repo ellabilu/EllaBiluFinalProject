@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Hanken Grotesk' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Add Font Awesome library -->
+    <title>About</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Hanken Grotesk';
+            background-color: #B0CDF5;
+        }
+
+        .navbar {
+            background-color: #1B3D6D; /* Updated background color */
+            color: white;
+            padding: 20px;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .navbar a {
+            color: white; /* Set link color to white */
+            text-decoration: none; /* Remove underline from links */
+            margin: 0 10px; /* Add some spacing between links */
+        }
+
+        .person-icon {
+            position: absolute; /* Position the person icon */
+            top: 20px; /* Adjust the distance from the top edge */
+
+        }
+
+        .navbar .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #1B3D6D;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        a {
+            color: white;
+            text-decoration: none; /* Remove underline from links */
+            font-size: 18px; /* Adjust text size */
+        }
+
+        .container {
+            margin-top: 80px; /* Adjusted to make space for the fixed navbar */
+            padding: 20px 80px; /* Added padding on both sides */
+        }
+
+        .about-content {
+            display: flex;
+            align-items: flex-start; /* Align items at the start */
+        }
+
+        .about-image {
+            flex: 1;
+            margin-right: 20px; /* Increase space between the image and text */
+        }
+
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .about-text {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .about-text h2 {
+            margin-top: 0;
+            font-size: 48px;
+            color: white;
+        }
+
+        .btn-container {
+            margin-top: 20px; /* Add space between text and buttons */
+            text-align: center; /* Center the buttons horizontally */
+        }
+
+        .btn {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: darkblue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        /* FAQ Styling */
+        .faq {
+            margin-top: 50px;
+        }
+
+        .faq-header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .faq-item {
+            background-color: #1B3D6D;
+            color: white;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .faq-question {
+            cursor: pointer;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .faq-answer {
+            display: none;
+            font-size: 18px;
+        }
+        .end-bar {
+            background-color: #1B3D6D;
+            color: white;
+            padding: 10px 40px;
+            text-align: center;
+        }
+.faq-question {
+    display: flex; /* Use flexbox */
+    justify-content: space-between; /* Align items with space between */
+    align-items: center; /* Align items vertically */
+}
+
+.faq-question i {
+    margin-left: auto; /* Move the chevron to the right */
+}
+        .faq-header {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center; /* Center the text */
+    color: #1B3D6D /* Change the color to dark blue */
+}
+        hr {
+    border: 0; /* Remove default border */
+    height: 2px; /* Set the height of the line break */
+    background-color:  #1B3D6D; /* Set the background color to dark blue */
+    margin: 50px auto; /* Add margin and center the line break */
+}
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <a href="/">Home</a>
+    <div class="dropdown">
+        <a href="#">Letters</a>
+        <div class="dropdown-content">
+            <a href="/newsletters">Newsletters</a>
+            <a href="/letters">Writing a Letter</a>
+            <a href="/upload">Upload Your Letter</a>
+        </div>
+    </div>
+    <a href="/opportunities">Opportunities</a>
+    <a href="/qanda">Ask and Answer</a>
+    <a href="/about">About</a>
+</header>
+    <div class="container">
+        <div class="about-content">
+            <div class="about-image">
+                <img src="https://images.pexels.com/photos/2220316/pexels-photo-2220316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Your Image">
+            </div>
+            <div class="about-text">
+                <h2>About My Project</h2>
+                <p>For my Gold Award project, I am passionately committed to fostering political engagement among teenagers by creating an inclusive and educational platform. Through extensive research and collaboration, I aim to demystify the political process and empower young people to exercise their voting rights confidently.</p>
+                <p>My project will include a comprehensive voter registration drive tailored to high school students, coupled with an advocacy campaign that highlights pressing issues relevant to our generation. By organizing community engagement events and leveraging digital outreach strategies, I seek to build a network of informed and motivated youth advocates who are eager to enact positive change in their communities and beyond.</p>
+                <p>Through evaluation and continuous improvement, I aspire to leave a lasting impact by instilling a sense of civic responsibility and activism among my peers.</p>
+                <p>DCAL, if you are reading this, I have had a great time in Fullstack and a somewhat great time creating this webpage. I am proud of what it offers and I hope you see the work I put into crafting this website, but also this project.</p>
+                <div class="btn-container">
+                <a class="btn" href="/newsletters">My Newsletters</a>
+<a class="btn" href="/letters">Write a Letter</a><a class="btn" href="/opportunities">Find Opportunities</a><a class="btn" href="/qanda">Ask a Question</a>
+                  
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal Info Line Break and FAQ Section -->
+        <hr>
+        <h2 class="faq-header">FAQs</h2>
+        <div class="faq">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">Do I need an account?<i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">To explore our resources, you do not need an account. To upload your own, you will need an account.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">Where can I learn about voting?<i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">This website does not cover voting, as there are better ones out there. Search voting and your state for more information.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">What's your letter writing program?<i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Users can upload letters about causes they care about and share templates for others to use.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">Do you have civic engagement opportunities?<i class="fas fa-chevron-down"></i></div>
+                <div class="faq-answer">Yes! Click the opportunities button to see how you can get involved in politics, voting, and advocacy.</div>
+            </div>
+        </div>
+    </div>
+     <div class="end-bar">
+        For inquiries: contact <a href="mailto:ellabilu1@gmail.com">ellabilu1@gmail.com</a>
+    </div>
+
+    <script>
+        function toggleAnswer(element) {
+            // Toggle the display of the answer associated with the clicked question
+            var answer = element.nextElementSibling;
+            answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>

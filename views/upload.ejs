@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Letters</title>
+    <link href='https://fonts.googleapis.com/css?family=Hanken+Grotesk' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Hanken Grotesk', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #1B3D6D;
+            color: white;
+            padding: 20px;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .person-icon {
+            position: absolute;
+            top: 20px;
+        }
+
+        .navbar .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #1B3D6D;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .background-image {
+            background-image: url('https://images.pexels.com/photos/1375261/pexels-photo-1375261.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            height: 100vh;
+            padding-top: 80px;
+            color: white;
+            text-align: center;
+            z-index: 0;
+        }
+        .background-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+        .content {
+            position: relative;
+            z-index: 2;
+            margin: auto;
+            max-width: 800px;
+            padding: 20px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .upload-form {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .upload-form h2 {
+            margin-top: 0;
+            color: #0056b3;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            color: #0056b3;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="file"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-group input[type="file"] {
+            color: #0056b3;
+        }
+        .submit-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+        .tiles-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            background-color: #8B0000;
+        }
+        .tile {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+            width: calc(33.333% - 40px);
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .tile h3 {
+            margin-top: 0;
+            color: #0056b3;
+            font-size: 20px;
+        }
+        .tile .topic {
+            color: #0056b3;
+            font-size: 24px;
+            margin: 0;
+        }
+        .tile p {
+            margin: 5px 0;
+            color: #0056b3;
+        }
+        .tile a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+        .tile a:hover {
+            text-decoration: underline;
+        }
+        .delete-button {
+            background-color: #fff;
+            color: #0056b3;
+            border: 1px solid #0056b3;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .delete-button:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+        .search-bar {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            background-color: #1B3D6D;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .search-bar input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            background-color: white;
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <a href="/">Home</a>
+        <div class="dropdown">
+            <a href="#">Letters</a>
+            <div class="dropdown-content">
+                <a href="/newsletters">Newsletters</a>
+                <a href="/letters">Writing a Letter</a>
+                <a href="/upload">Upload Your Letter</a>
+            </div>
+        </div>
+        <a href="/opportunities">Opportunities</a>
+        <a href="/about">About</a>
+    </header>
+    <div class="background-image">
+        <div class="background-overlay"></div>
+        <div class="content">
+            <h1>Upload Your Letter to Elected Officials</h1>
+            <p>Share your letter as a template for others to use! Add a link to the cause and who to send the letter to as well.</p>
+            <p>Scroll Down to See Your Creations!</p>
+            <% if (user) { %>
+                <div class="upload-form">
+                    <h2>Upload a File</h2>
+                    <form id="fileUploadForm" enctype="multipart/form-data" action="/upload" method="POST">
+                        <div class="form-group">
+                            <label for="topic">Topic:</label>
+                            <input type="text" id="topic" name="topic" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="link">Link to Cause:</label>
+                            <input type="text" id="link" name="link" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="who">Who to Send the Letters to:</label>
+                            <input type="text" id="who" name="who" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="file">Choose a File:</label>
+                            <input type="file" name="file" id="file" required onchange="showFileName()">
+                            <p id="fileNameDisplay"></p>
+                        </div>
+                        <button type="submit" class="submit-button">Upload</button>
+                    </form>
+                </div>
+            <% } else { %>
+                <p>Please <a href="/login" style="color: #0056b3;">log in</a> to upload your letter.</p>
+            <% } %>
+        </div>
+    </div>
+    <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search entries..." oninput="filterEntries()">
+</div>
+    <div id="uploadsSection" class="tiles-container">
+        <% if (files && files.length) { %>
+            <% files.forEach(function(file) { %>
+                <div class="tile">
+                    <p class="topic">Topic: <%= file.topic %></p>
+                    <h3>Click the file to download: <a href="/<%= file.fileName %>" download style="color: #0056b3;"><%= file.fileName %></a></h3>
+                    <p>Link: <a href="<%= file.link %>" target="_blank" style="color: #0056b3;"><%= file.link %></a></p>
+                    <p>Send to: <%= file.who %></p>
+                    <% if (user) { %>
+                        <form action="/delete/<%= file.fileName %>" method="POST">
+                            <button type="submit" class="delete-button">Delete</button>
+                        </form>
+                    <% } %>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p style="color: white;">No files uploaded yet.</p>
+        <% } %>
+    </div>
+<script>
+    function showFileName() {
+        var input = document.getElementById('file');
+        var fileNameDisplay = document.getElementById('fileNameDisplay');
+        fileNameDisplay.textContent = 'Selected file: ' + input.files[0].name;
+    }
+
+    function filterEntries() {
+        var searchInput = document.getElementById('searchInput').value.toLowerCase();
+        var tiles = document.querySelectorAll('.tile');
+
+        tiles.forEach(tile => {
+            var topic = tile.querySelector('.topic').textContent.toLowerCase();
+            var link = tile.querySelector('a').textContent.toLowerCase();
+            var who = tile.querySelector('p:nth-of-type(2)').textContent.toLowerCase();
+
+            if (topic.includes(searchInput) || link.includes(searchInput) || who.includes(searchInput)) {
+                tile.style.display = '';
+            } else {
+                tile.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

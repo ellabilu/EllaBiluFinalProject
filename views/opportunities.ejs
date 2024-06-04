@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opportunities</title>
+    <link href='https://fonts.googleapis.com/css?family=Hanken+Grotesk' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            background-color: #B0CDF5;
+            font-family: 'Hanken Grotesk', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .fas.fa-user.person-icon {
+            font-size: 24px;
+        }
+
+        .general-description {
+            font-style: italic;
+            color: white;
+            text-align: center;
+            margin: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-top: 150px;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+            font-size: 48px;
+        }
+
+        .navbar {
+            background-color: #1B3D6D; /* Updated background color */
+            color: white;
+            padding: 20px;
+            position: fixed; /* Fixed position */
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 3;
+        }
+
+        .navbar a {
+            color: white; /* Set link color to white */
+            text-decoration: none; /* Remove underline from links */
+            margin: 0 10px; /* Add some spacing between links */
+        }
+
+        .person-icon {
+            position: absolute; /* Position the person icon */
+            top: 20px; /* Adjust the distance from the top edge */
+        }
+
+        .navbar .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #1B3D6D;
+            min-width: 160px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .opportunity-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            margin-top: 60px;
+        }
+
+        .opportunity-tile {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+            width: calc(33.333% - 40px);
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .opportunity-tile:hover {
+            transform: translateY(-5px);
+        }
+
+        .opportunity-tile img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .opportunity-tile h3 {
+            margin-top: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .opportunity-tile p {
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 4;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 5px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #sortDropdown {
+            background-color: #1B3D6D;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .form-container form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .form-container form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #1B3D6D;
+            font-weight: bold;
+        }
+
+        .form-container form input,
+        .form-container form textarea,
+        .form-container form button {
+            width: calc(100% - 24px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-container form button {
+            background-color: #1B3D6D;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-container form button:hover {
+            background-color: #0f2a4d;
+        }
+
+        .search-container {
+            text-align: center;
+            margin: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-container input {
+            padding: 10px;
+            width: calc(100% - 24px);
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .search-container button {
+            padding: 10px;
+            border: none;
+            background-color: #1B3D6D;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .search-container button:hover {
+            background-color: #0f2a4d;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 400px;
+            background: url('https://images.pexels.com/photos/774316/pexels-photo-774316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center/cover;
+            z-index: 1;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+<header class="navbar">
+    <a href="/">Home</a>
+    <div class="dropdown">
+        <a href="#">Letters</a>
+        <div class="dropdown-content">
+            <a href="/newsletters">Newsletters</a>
+            <a href="/letters">Writing a Letter</a>
+            <a href="/upload">Upload Your Letter</a>
+        </div>
+    </div>
+    <a href="/opportunities">Opportunities</a>
+    <a href="/qanda">Ask and Answer</a>
+    <a href="/about">About</a>
+</header>
+
+<div class="background"></div>
+
+    <h1>Opportunities</h1>
+    <p class="general-description">Explore various opportunities to engage in community service, leadership, and advocacy initiatives.</p>
+    <p class="general-description">Discover events, programs, and projects that align with your interests and values.</p>
+    <p class="general-description">Click on the opportunties for more information!</p>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search opportunities..." onkeypress="if(event.key === 'Enter') searchOpportunities()">
+        <button onclick="searchOpportunities()">Search</button>
+    </div>
+
+     <div id="opportunity-container" class="opportunity-container">
+        <% for (let i = 0; i < opps.length; i++) { %>
+            <div class="opportunity-tile" onclick='openModal(<%= JSON.stringify(opps[i]) %>)'>
+                <p>Opportunity: <%= opps[i].name %></p>
+                <p>Organization: <%= opps[i].organization %></p>
+                <p>Date: <%= new Date(opps[i].date).toLocaleDateString() %></p>
+            </div>
+        <% } %>
+    </div>
+
+    <div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="modal-content-details">
+            <h2 id="modalTitle"></h2>
+            <p id="modalOrganization"></p>
+            <p id="modalDate"></p>
+            <p id="modalDescription"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function searchOpportunities() {
+        const input = document.getElementById("searchInput").value.toLowerCase();
+        const opportunityContainer = document.getElementById("opportunity-container");
+        const tiles = opportunityContainer.getElementsByClassName("opportunity-tile");
+
+        for (let i = 0; i < tiles.length; i++) {
+            const tile = tiles[i];
+            const name = tile.getElementsByTagName("p")[0].innerText.toLowerCase();
+            const organization = tile.getElementsByTagName("p")[1].innerText.toLowerCase();
+            const date = tile.getElementsByTagName("p")[2].innerText.toLowerCase();
+
+            if (name.includes(input) || organization.includes(input) || date.includes(input)) {
+                tile.style.display = "";
+            } else {
+                tile.style.display = "none";
+            }
+        }
+    }
+
+        // Function to generate HTML for an opportunity tile
+        function createOpportunityTile(opportunity) {
+            return `
+                <div class="opportunity-tile" onclick='openModal(${JSON.stringify(opportunity)})'>
+                    <img src="${opportunity.photo}" alt="${opportunity.name}">
+                    <h3>${opportunity.name}</h3>
+                    <p><strong>Organization:</strong> ${opportunity.organization}</p>
+                    <p
+><strong>Applicable To:</strong> ${opportunity.applicableTo.join(', ')}</p>
+                    <p><strong>Date:</strong> ${new Date(opportunity.date).toLocaleDateString()}</p>
+                    <p><strong>Uploaded By:</strong> ${opportunity.uploadedBy}</p>
+                </div>
+            `;
+        }
+
+        // Function to render opportunity tiles onto the page
+        async function renderOpportunities() {
+            const container = document.getElementById("opportunity-container");
+            const opportunities = await fetchOpportunities();
+            opportunities.forEach(opportunity => {
+                const tile = createOpportunityTile(opportunity);
+                container.innerHTML += tile;
+            });
+        }
+
+        function openModal(opportunity) {
+    const modal = document.getElementById("myModal");
+    const content = `
+        <h3>${opportunity.name}</h3>
+        <p><strong>Organization:</strong> ${opportunity.organization}</p>
+        ${opportunity.applicableTo ? `<p><strong>Applicable To:</strong> ${opportunity.applicableTo.join(', ')}</p>` : ''}
+        <p><strong>Date:</strong> ${new Date(opportunity.date).toLocaleDateString()}</p>
+        ${opportunity.uploadedBy ? `<p><strong>Uploaded By:</strong> ${opportunity.uploadedBy}</p>` : ''}
+        ${opportunity.tags ? `<p><strong>Tags:</strong> ${opportunity.tags.join(', ')}</p>` : ''}
+    `;
+    document.getElementById("modal-content-details").innerHTML = content;
+    modal.style.display = "block";
+}
+
+        // Function to close the modal
+        function closeModal() {
+            const modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+
+        // Close the modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('myModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('opportunity-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+
+            data.applicableTo = data.applicableTo.split(',');
+            data.tags = data.tags.split(',');
+
+            try {
+                const response = await fetch('/opportunities', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                if (response.ok) {
+                    alert('Opportunity added successfully!');
+                    event.target.reset();
+                } else {
+                    alert('Error adding opportunity');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error adding opportunity');
+            }
+        });
+
+
+        // Attach event listener to the search input
+        document.getElementById('searchInput').addEventListener('input', filterOpportunities);
+        document.getElementById('openFormButton').addEventListener('click', function() {
+            document.getElementById('formContainer').style.display = 'block';
+        });
+</script>
+</body>
+</html>
+

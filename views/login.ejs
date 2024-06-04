@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Hanken Grotesk' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome library -->
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            position: relative;
+        }
+        body {
+            font-family: 'Hanken Grotesk', Arial, sans-serif;
+            display: flex;
+        }
+        .image-container {
+            flex: 1;
+            background-image: url('https://images.pexels.com/photos/5565396/pexels-photo-5565396.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+            background-size: cover;
+            background-position: left;
+            height: 100vh;
+        }
+        .login-container {
+            flex: 1;
+            background-color: #B0CDF5;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+        }
+        .login-form {
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            color: white;
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover {
+            background-color: red;
+        }
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+        p a {
+            color: white;
+        }
+        .home-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #1B3D6D;
+            font-size: 24px;
+            text-decoration: none; /* Remove underline */
+            z-index: 999; /* Increase z-index value */
+        }
+    </style>
+</head>
+<body>
+    <a class="home-icon" href="/"><i class="fas fa-home"></i></a>
+    <div class="image-container"></div>
+    <div class="login-container">
+        <div class="login-form">
+            <h1>Log In</h1>
+            <form action="/login" method="POST">
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+    </div>
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+    <button type="sumit">Login</button>
+  </form>
+            <p>Don't have an account? <a href="/register">Register here</a></p>
+        </div>
+    </div>
+</body>
+</html>
